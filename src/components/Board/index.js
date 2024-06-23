@@ -24,7 +24,7 @@ function Board() {
 
   return (
     <div className="Board">
-      <h1>Waveboard</h1>
+      {/* <h1>Waveboard</h1> */}
       <canvas ref={canvasRef} 
       />
     </div>
