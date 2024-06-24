@@ -22,6 +22,19 @@ export const creatRoughElement = (id, x1, y1, x2, y2, { type }) => {
         case TOOL_ITEMS.RECTANGLE:
             element.roughEle = gen.rectangle(x1, y1, x2 - x1, y2 - y1 , options);
             return element;
+        case TOOL_ITEMS.CIRCLE:
+            // const width = Math.abs(x2 - x1);
+            // const height = Math.abs(y2 - y1);
+            // const diameter = Math.min(width, height);              
+            // element.roughEle = gen.circle(x1, y1, diameter , options);     This is gives the absolute circle
+
+          const cx = (x1 + x2) / 2;
+            const cy = (y1 + y2) / 2;
+            const width = x2 - x1;
+            const height = y2 - y1;
+            element.roughEle = gen.ellipse(cx, cy, Math.abs(width), Math.abs(height), options);
+
+            return element;
         default:
             throw new Error("Invalid type tool type not recognised");
         
