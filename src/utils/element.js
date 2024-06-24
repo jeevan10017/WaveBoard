@@ -1,6 +1,9 @@
 import { TOOL_ITEMS } from "../constants";
 import rough from "roughjs/bin/rough";
+import { ARROW_LENGTH } from '../constants';
+import {getArrowHeadCoordinates}  from "./math";
 const gen = rough.generator();
+
 
 export const creatRoughElement = (id, x1, y1, x2, y2, { type }) => {
 
@@ -35,6 +38,12 @@ export const creatRoughElement = (id, x1, y1, x2, y2, { type }) => {
             element.roughEle = gen.ellipse(cx, cy, Math.abs(width), Math.abs(height), options);
 
             return element;
+        case TOOL_ITEMS.ARROW:
+            const {x3, y3, x4, y4} = getArrowHeadCoordinates(x1, y1, x2, y2, ARROW_LENGTH);
+            const points = [[x1, y1], [x2, y2], [x3, y3], [x2, y2], [x4, y4]];  //x2,y2 is the tip of the arrow head    //x1,y1 is the start of the arrow head //x3,y3 and x4,y4 are the two points of the arrow head
+             element.roughEle = gen.linearPath(points , options);
+             return element;
+
         default:
             throw new Error("Invalid type tool type not recognised");
         
