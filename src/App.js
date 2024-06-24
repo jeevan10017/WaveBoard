@@ -2,16 +2,17 @@
 import './App.css';
 import Board from './components/Board';
 import Toolbar from './components/Toolbar';
+import BoardProvider from './store/BoardProvider';
 
 
 
 function App() { 
 
   return (
-    <div className="App">
+    <BoardProvider>
       <Toolbar />
       <Board />
-    </div>
+      </BoardProvider>
   );
 }
 

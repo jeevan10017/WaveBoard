@@ -1,34 +1,62 @@
-import { useEffect,useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import rough from 'roughjs';
+import boardContext from '../../store/board-context';
+import { TOOL_ACTION_TYPES } from '../../constants';
 
+function Board() {
+    const canvasRef = useRef();
+    const {
+        elements,
+        boardMouseDownHandler,
+        boardMouseMoveHandler,
+        boardMouseUPHandler,
+        toolActiontype,
+    } = useContext(boardContext);
 
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        console.log("Canvas initialized:", canvas.width, canvas.height);
+    }, []);
 
-function Board() { 
-  const canvasRef = useRef();     //canvas ko dekhna hai
-  useEffect(() => {                                          //canvas me kuch/draw karna hai
-     const canvas   = canvasRef.current;               
-     canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    const context = canvas.getContext('2d');
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        const context = canvas.getContext('2d');
+        context.save();
 
-    const roughCanvas = rough.canvas(canvas);
-    const generator = roughCanvas.generator;
-    let rect1 = generator.rectangle(10, 10, 100, 100);
-    let rect2 = generator.rectangle(10, 120, 100, 100, {fill: 'red' , fillStyle: 'solid' , strokeWidth: 4});
-    roughCanvas.draw(rect1);
-    roughCanvas.draw(rect2);
+        const roughCanvas = rough.canvas(canvas);
+        elements.forEach((element) => {
+            roughCanvas.draw(element.roughEle);
+        });
 
-    // context.fillStyle = 'red';
-    // context.fillRect(10, 10, 100, 100);
-  }, []);
+        return () => {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        };
+    }, [elements]);
 
-  return (
-    <div className="Board">
-      {/* <h1>Waveboard</h1> */}
-      <canvas ref={canvasRef} 
-      />
-    </div>
-  );
+    const handleMouseDown = (event) => {
+        boardMouseDownHandler(event);
+    };
+
+    const handleMouseMove = (event) => {
+        if (toolActiontype === TOOL_ACTION_TYPES.DRAWING) {
+            boardMouseMoveHandler(event);
+        }
+    };
+
+    const handleMouseUP = () => {
+        boardMouseUPHandler();
+    };
+
+    return (
+        <canvas
+            ref={canvasRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUP}
+        />
+    );
 }
 
 export default Board;
