@@ -1,48 +1,114 @@
 .container {
-    @apply absolute top-1/2 left-5 text-sm border border-gray-400;
-    transform : translateY(-50%);
-    box-shadow: 1px 0 10px rgba(0, 0, 0, 0.2);
-}
-.selectOptionContainer {
-    @apply mb-6 last:mb-0 first:pt-5 last:pb-5 px-4 ;
-}
-
-.toolBoxLabel{
-    @apply block mb-1;
-}
-
-.colorsContainer {
-    @apply flex flex-wrap items-center;
-}
-
-.colorBox {
-    @apply inline-block w-5 h-5 rounded mr-1 last:me-0;
-}
-
-.noFillColorBox {
-     background: linear-gradient(
-        to top left ,
-        rgba(255 ,0 ,0,0) 0%,
-        rgba(255 ,0 ,0,0) calc (50% - 0.8px),
-        rgba(255 , 0 , 0 , 1) 50%,
-        rgba(255 , 0 , 0 , 0) calc(50% + 0.8px),
-        rgba(255 , 0 , 0 , 0) 100%
-     ),
-     linear-gradient(
-        to top right ,
-        rgba(255 ,0 ,0,0) 0%,
-        rgba(255 ,0 ,0,0) calc (50% - 0.8px),
-        rgba(255 , 0 , 0 , 1) 50%,
-        rgba(255 , 0 , 0 , 0) calc(50% + 0.8px),
-        rgba(255 , 0 , 0 , 0) 100%
-     );
-}
-
-.activeColorBox {
-    @apply border border-gray-300;
-    box-shadow:  0 0 0 1px #4a47b1;
-}
-
-.colorPicker{
-    @apply mr-5 w-10 h-10 rounded border-2 border-neutral-400;
-}
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(-50%, -50%);
+    padding: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    border : 2px solid #e6e6e6;
+    cursor: move;
+    z-index: 1000;
+  }
+  
+  .dragHandle {
+    background-color:  rgb(99, 96, 96);
+    padding: 5px;
+    text-align: center;
+    cursor: move;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .selectOptionContainer {
+    margin-bottom: 24px;
+  }
+  
+  .selectOptionContainer:last-child {
+    margin-bottom: 0;
+  }
+  
+  .selectOptionContainer:first-child {
+    padding-top: 20px;
+  }
+  
+  .toolBoxLabel {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .colorsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .colorBox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  
+  .colorBox:last-child {
+    margin-right: 0;
+  }
+  
+  .noFillColorBox {
+    background: linear-gradient(
+        to top left,
+        rgba(255, 0, 0, 0) 0%,
+        rgba(255, 0, 0, 0) calc(50% - 0.8px),
+        rgba(255, 0, 0, 1) 50%,
+        rgba(255, 0, 0, 0) calc(50% + 0.8px),
+        rgba(255, 0, 0, 0) 100%
+      ),
+      linear-gradient(
+        to top right,
+        rgba(255, 0, 0, 0) 0%,
+        rgba(255, 0, 0, 0) calc(50% - 0.8px),
+        rgba(255, 0, 0, 1) 50%,
+        rgba(255, 0, 0, 0) calc(50% + 0.8px),
+        rgba(255, 0, 0, 0) 100%
+      );
+  }
+  
+  .activeColorBox {
+    border: 1px solid #ccc;
+    box-shadow: 0 0 0 1px #4a47b1;
+  }
+  
+  .colorPicker {
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+  }
+  
+  .dark {
+   
+    color: white;
+  }
+  
+  .dragHandle {
+    background-color: rgba(165, 162, 162, 0.2);
+  }
+  
+  .toolBoxLabel {
+    color: rgb(99, 96, 96);
+    font-weight: 500;
+  }
+  
+  .colorPicker {
+    border: 2px solid rgb(67, 63, 63);
+  }
+  
+  .selectOptionContainer {
+    color: rgb(133, 130, 130);
+  }
+  
