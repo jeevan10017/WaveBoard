@@ -18,7 +18,7 @@
     align-items: center;
     font-size: 24px;
     padding: 12px;
-    color: rgb(35, 34, 34);
+    color: rgb(46, 45, 45);
     margin-right: 20px;
     cursor: pointer;
   }
@@ -34,8 +34,8 @@
   }
   
   .toolItem.active {
-    background-color: #99afd4;
-    color: #4a4a4a;
+    background-color: #91acda;
+    color: #161515;
     border-radius: 8px;
   }
   

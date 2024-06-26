@@ -17,6 +17,8 @@
   .dragHandle {
     background-color:  rgb(99, 96, 96);
     padding: 5px;
+    font-weight: 800;
+    color: rgb(115, 113, 113);
     text-align: center;
     cursor: move;
     border-radius: 8px;
