@@ -1,13 +1,11 @@
-import { TOOL_ITEMS } from "../constants";
+import { TOOL_ITEMS ,ARROW_LENGTH} from "../constants";
 import rough from "roughjs/bin/rough";
-import { ARROW_LENGTH } from '../constants';
-import {getArrowHeadCoordinates}  from "./math";
+import {getArrowHeadCoordinates , isPointCloseToLine}  from "./math";
 import getStroke from "perfect-freehand";
 const gen = rough.generator();
 
 
 export const creatRoughElement = (id, x1, y1, x2, y2, { type ,stroke , fill ,size }) => {
-
     const element = {
         id,
         x1,
@@ -70,6 +68,7 @@ export const creatRoughElement = (id, x1, y1, x2, y2, { type ,stroke , fill ,siz
             const points = [[x1, y1], [x2, y2], [x3, y3], [x2, y2], [x4, y4]];  //x2,y2 is the tip of the arrow head    //x1,y1 is the start of the arrow head //x3,y3 and x4,y4 are the two points of the arrow head
              element.roughEle = gen.linearPath(points , options);
              return element;
+  
 
         default:
             throw new Error("Invalid type tool type not recognised");
@@ -79,6 +78,38 @@ export const creatRoughElement = (id, x1, y1, x2, y2, { type ,stroke , fill ,siz
       }
       
 };
+export const isPointNearElement = (element, pointX, pointY) => {
+  const { x1, y1, x2, y2, type } = element;
+  switch (type) {
+      case TOOL_ITEMS.LINE:
+      case TOOL_ITEMS.ARROW:
+          return isPointCloseToLine(x1, y1, x2, y2, pointX, pointY);
+      case TOOL_ITEMS.RECTANGLE:
+      case TOOL_ITEMS.CIRCLE:
+          return (
+              isPointCloseToLine(x1, y1, x2, y1, pointX, pointY) ||
+              isPointCloseToLine(x2, y1, x2, y2, pointX, pointY) ||
+              isPointCloseToLine(x2, y2, x1, y2, pointX, pointY) ||
+              isPointCloseToLine(x1, y2, x1, y1, pointX, pointY)
+          );
+      case TOOL_ITEMS.BRUSH: {
+          const canvas = document.getElementById("canvas");
+          if (!canvas) {
+              console.error("Canvas element not found");
+              return false;
+          }
+          const context = canvas.getContext("2d");
+          if (!context) {
+              console.error("Unable to get canvas context");
+              return false;
+          }
+          return context.isPointInPath(element.path, pointX, pointY);
+      }
+      default:
+          throw new Error("TYPE NOT RECOGNISED");
+  }
+};
+
 export default creatRoughElement;
 export const  getSvgPathFromStroke = (stroke) =>{
   if (!stroke.length) return ""
