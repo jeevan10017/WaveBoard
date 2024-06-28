@@ -72,22 +72,22 @@ npm install
 npm start
 ```
 
-## Available Scripts
+# Available Scripts
 In the project directory, you can run:
 
-# npm start
+## npm start
 Runs the app in development mode. Open http://localhost:3000 to view it in the browser.
 
-# npm build
+## npm build
 Builds the app for production to the build folder.
 
-# npm test
+## npm test
 Launches the test runner in the interactive watch mode.
 
-# npm eject
+## npm eject
 Ejects the project from create-react-app configuration. Use this only if you know what you are doing.
 
-# Dependencies
+## Dependencies
 @testing-library/jest-dom
 @testing-library/react
 @testing-library/user-event
@@ -101,53 +101,53 @@ react-scripts
 roughjs
 web-vitals
 
-# Dev Dependencies
+## Dev Dependencies
 ajv
 tailwindcss
 Folder Structure
 src/components/Board/index.js
 Handles the drawing logic and renders the canvas.
 
-# src/components/Board/index.module.css
+## src/components/Board/index.module.css
 CSS module for styling the board component.
 
-# src/components/Toolbar/index.js
+## src/components/Toolbar/index.js
 Contains the toolbar with drawing tools and actions.
 
-# src/components/Toolbar/index.module.css
+## src/components/Toolbar/index.module.css
 CSS module for styling the toolbar.
 
-# src/components/Toolbox/index.js
+## src/components/Toolbox/index.js
 Contains the toolbox for selecting colors and sizes.
 
-# src/components/Toolbox/index.module.css
+## src/components/Toolbox/index.module.css
 CSS module for styling the toolbox.
 
-# src/store/board-context.js
+## src/store/board-context.js
 Context for managing the board state.
 
-# src/store/BoardProvider.js
+## src/store/BoardProvider.js
 Provider component for the board context.
 
-# src/store/toolbox-context.js
+## src/store/toolbox-context.js
 Context for managing the toolbox state.
 
-# src/store/ToolboxProvider.js
+## src/store/ToolboxProvider.js
 Provider component for the toolbox context.
 
-# src/constants.js
+## src/constants.js
 Contains constants used throughout the application.
 
-# src/utils/element.js
+## src/utils/element.js
 Utility functions for creating and managing board elements.
 
-# src/App.js
+## src/App.js
 Main application component that renders the board, toolbar, and toolbox.
 
-# src/App.css
+## src/App.css
 
-## Author
-Wave Board is created and maintained by [Jeevan Kumar Korra].lication.
+# Author
+Wave Board is created and maintained by JEEVAN KUMAR KORRA
 
 
 
